@@ -1,0 +1,50 @@
+{
+    "PREPROCESSOR": {
+        "PRINT": [
+            "LOADLIB IO",
+            "CALL SHORT(0)"
+        ],
+        "READ": [
+            "LOADLIB IO",
+            "CALL SHORT(1)"
+        ],
+        "PRINTSTACK": [
+            "LOADLIB IO",
+            "CALL SHORT(2)"
+        ],
+        "FOPEN": [
+            "LOADLIB IO",
+            "CALL SHORT(3)"
+        ],
+        "FREAD": [
+            "LOADLIB IO",
+            "CALL SHORT(4)"
+        ],
+        "FWRITE": [
+            "LOADLIB IO",
+            "CALL SHORT(5)"
+        ],
+        "FTELL": [
+            "LOADLIB IO",
+            "CALL SHORT(6)"
+        ],
+        "FSEEK": [
+            "LOADLIB IO",
+            "CALL SHORT(7)"
+        ],
+        "FCLOSE": [
+            "LOADLIB IO",
+            "CALL SHORT(8)"
+        ],
+        "SYSTEM": [
+            "LOADLIB IO",
+            "CALL SHORT(9)"
+        ]
+    },
+    "DATA": {
+        "O_READ": "INT(0)",
+        "O_WRITE": "INT(1)",
+        "O_APP": "INT(3)",
+        "O_CREAT": "INT(4)"
+    }
+}

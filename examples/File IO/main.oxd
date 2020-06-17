@@ -1,0 +1,59 @@
+PREPROCESSOR {
+    .STACKSIZE 512
+
+    including <stdio.json>
+    including <stdvars.json>
+    including <stderr.json>
+    including[REVERSESTACK] <stdmem.json>
+}
+
+DATA {
+    FILENAME = TIMES(20,00)
+    INP_LENG = INT(0)
+    MAXCLN   = INT(512)
+    HANDLE = POINTER(0)
+    S1 = ASCII.Filename: + 20
+    S2 = ASCII.Contents: + 20
+    ERR = ASCII.Failed + 20 + ASCII.to + 20 + ASCII.open + 20 + ASCII.File... + 0a
+}
+
+CODE {
+        SETARG BYTE(0) S1
+    PRINT
+
+    iGETL INP_LENG FILENAME
+        SETARG BYTE(0) INP_LENG
+    READ
+
+        SETARG BYTE(0) NULL
+        SETARG BYTE(1) INP_LENG
+    REVERSESTACK
+    iPOP FILENAME INP_LENG
+
+        SETARG BYTE(0) S2
+    PRINT
+
+    iSUB INP_LENG INP_LENG
+    iADD INP_LENG MAXCLN
+        SETARG BYTE(0) INP_LENG
+    READ
+
+        SETARG BYTE(0) FILENAME
+        SETARG BYTE(1) O_WRITE
+        SETARG BYTE(2) HANDLE
+    FOPEN
+    CHKERR ERR_FOPENERR
+    GOTO _fail
+
+        SETARG BYTE(0) HANDLE
+        SETARG BYTE(1) INP_LENG
+        SETARG BYTE(2) NULL
+    FWRITE
+    FCLOSE
+    eof
+
+_fail:
+        SETARG BYTE(0) ERR
+    PRINT
+    eof
+}

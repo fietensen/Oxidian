@@ -1,0 +1,65 @@
+PREPROCESSOR {
+    .STACKSIZE 0
+    including[SOCKET,AF_INET,SOCK_STREAM,SSEND] <stdnet.json>
+    including[GETHOSTBYNAME,SCONNECT,SCLOSE] <stdnet.json>
+    including[PRINT] <stdio.json>
+    including <stderr.json>
+    including[NULL] <stdvars.json>
+}
+
+DATA {
+    HOST = ASCII.localhost
+    PORT = INT(1337)
+    HANDLE = INT(0)
+    IP = TIMES(20,00)
+    DBGMSG = ASCII.Connecting + 20 + ASCII.to + 20
+    DBGMSG2= ASCII.:1337 + 0a
+    FAIL = ASCII.Aborted... + 0a
+    MSG = ASCII.Hello + 20 + ASCII.from + 20 + ASCII.Client! + 0a
+    LEN = INT(0)
+}
+
+CODE {
+    iGETL LEN MSG
+
+        SETARG BYTE(0) HOST
+        SETARG BYTE(1) IP
+    GETHOSTBYNAME
+    CHKERR ERR_GETHOSTBYNAME
+    GOTO fail
+
+        SETARG BYTE(0) DBGMSG
+    PRINT
+        SETARG BYTE(0) IP
+    PRINT
+        SETARG BYTE(0) DBGMSG2
+    PRINT
+
+        SETARG BYTE(0) AF_INET
+        SETARG BYTE(1) SOCK_STREAM
+        SETARG BYTE(2) NULL
+        SETARG BYTE(3) HANDLE
+    SOCKET
+    CHKERR ERR_SOCKET
+    GOTO fail
+    
+        SETARG BYTE(0) HANDLE
+        SETARG BYTE(1) AF_INET
+        SETARG BYTE(2) IP
+        SETARG BYTE(3) PORT
+    SCONNECT
+    CHKERR ERR_CONNECT
+    GOTO fail
+
+        SETARG BYTE(1) MSG
+        SETARG BYTE(2) LEN
+        SETARG BYTE(3) NULL
+    SSEND
+    SCLOSE
+    eof
+
+fail:
+        SETARG BYTE(0) FAIL
+    PRINT
+
+}

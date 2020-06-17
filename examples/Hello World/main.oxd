@@ -1,0 +1,14 @@
+PREPROCESSOR {
+    .STACKSIZE 0
+
+    including[PRINT] <stdio.json>
+}
+
+DATA {
+    STRING = ASCII.Hello + 20 + ASCII.World! + 0a
+}
+
+CODE {
+    SETARG BYTE(0) STRING
+    PRINT
+}

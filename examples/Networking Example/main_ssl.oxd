@@ -1,0 +1,88 @@
+PREPROCESSOR {
+    .STACKSIZE 4096
+    including <stdnet.json>
+    including[PRINT,PRINTSTACK] <stdio.json>
+    including <stderr.json>
+    including[NULL] <stdvars.json>
+}
+
+DATA {
+    HOST = ASCII.www.google.com
+    PORT = INT(443)
+    HANDLE = INT(0)
+    IP = TIMES(20,00)
+    DBGMSG = ASCII.Connecting + 20 + ASCII.to + 20
+    DBGMSG2= ASCII.:443 + 0a
+    FAIL = ASCII.Aborted... + 0a
+    RECVSZ = INT(4096)
+    RECVD = INT(0)
+    MSG = 474554202f20485454502f312e310d0a486f73743a207777772e676f6f676c652e636f6d0d0a0d0a
+    LEN = INT(0)
+}
+
+CODE {
+    iGETL LEN MSG
+
+        SETARG BYTE(0) HOST
+        SETARG BYTE(1) IP
+    GETHOSTBYNAME
+    CHKERR ERR_GETHOSTBYNAME
+    GOTO fail
+
+        SETARG BYTE(0) DBGMSG
+    PRINT
+        SETARG BYTE(0) IP
+    PRINT
+        SETARG BYTE(0) DBGMSG2
+    PRINT
+
+        SETARG BYTE(0) AF_INET
+        SETARG BYTE(1) SOCK_STREAM
+        SETARG BYTE(2) NULL
+        SETARG BYTE(3) HANDLE
+    SOCKET
+    CHKERR ERR_SOCKET
+    GOTO fail
+   
+        SETARG BYTE(0) HANDLE
+    SETSOCKSSL
+
+        SETARG BYTE(1) AF_INET
+        SETARG BYTE(2) IP
+        SETARG BYTE(3) PORT
+    SCONNECT
+    CHKERR ERR_CONNECT
+    GOTO fail
+
+        SETARG BYTE(1) MSG
+        SETARG BYTE(2) LEN
+        SETARG BYTE(3) NULL
+    SSEND
+    CHKERR INT(14)
+    GOTO fail
+
+_loop:
+    iSSPP NULL
+        SETARG BYTE(0) HANDLE
+        SETARG BYTE(1) RECVSZ
+        SETARG BYTE(2) NULL
+        SETARG BYTE(3) RECVD
+    SRECV
+    CHKERR ERR_RECV
+    GOTO fail
+
+        SETARG BYTE(0) RECVD
+    PRINTSTACK
+    iCMP RECVD NULL
+    CH
+    GOTO _loop
+
+        SETARG BYTE(0) HANDLE
+    SCLOSE
+    eof
+
+fail:
+        SETARG BYTE(0) FAIL
+    PRINT
+
+}

@@ -1,0 +1,77 @@
+{
+    "PREPROCESSOR": {
+        "SOCKET": [
+            "LOADLIB NET",
+            "CALL SHORT(0)"
+        ],
+        "SCONNECT": [
+            "LOADLIB NET",
+            "CALL SHORT(1)"
+        ],
+        "SSEND": [
+            "LOADLIB NET",
+            "CALL SHORT(2)"
+        ],
+        "SCLOSE": [
+            "LOADLIB NET",
+            "CALL SHORT(3)"
+        ],
+        "SRECV": [
+            "LOADLIB NET",
+            "CALL SHORT(4)"
+        ],
+        "GETHOSTBYNAME": [
+            "LOADLIB NET",
+            "CALL SHORT(5)"
+        ],
+        "SETSOCKOPT": [
+            "LOADLIB NET",
+            "CALL SHORT(6)"
+        ],
+        "SLISTEN": [
+            "LOADLIB NET",
+            "CALL SHORT(7)"
+        ],
+        "SBIND": [
+            "LOADLIB NET",
+            "CALL SHORT(8)"
+        ],
+        "SACCEPT": [
+            "LOADLIB NET",
+            "CALL SHORT(9)"
+        ],
+        "GETSOCKADDR": [
+            "LOADLIB NET",
+            "CALL SHORT(10)"
+        ],
+        "GETSOCKPORT": [
+            "LOADLIB NET",
+            "CALL SHORT(11)"
+        ],
+        "SETSOCKSSL": [
+            "LOADLIB NET",
+            "CALL SHORT(12)"
+        ]
+    },
+    "DATA": {
+        "SOL_SOCKET":      "INT(1)",
+        "SOCK_DGRAM":      "INT(2)",
+        "SOCK_STREAM":     "INT(1)",
+        "SOCK_SEQPACKET":  "INT(5)",
+        "SO_DEBUG":        "INT(1)",
+        "SO_ACCEPTCONN":   "INT(30)",
+        "SO_BROADCAST":    "INT(6)",
+        "SO_REUSEADDR":    "INT(2)",
+        "SO_KEEPALIVE":    "INT(9)",
+        "SO_LINGER":       "INT(13)",
+        "SO_OOBINLINE":    "INT(10)",
+        "SO_RCVTIMEO":     "INT(20)",
+        "SO_SNDTIMEO":     "INT(21)",
+        "SO_SNDBUF":       "INT(7)",
+        "SO_RCVBUF":       "INT(8)",
+        "SO_ERROR":        "INT(4)",
+        "SO_TYPE":         "INT(3)",
+        "AF_UNIX":         "INT(1)",
+        "AF_INET":         "INT(2)"
+    }
+}

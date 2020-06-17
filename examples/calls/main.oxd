@@ -1,0 +1,42 @@
+PREPROCESSOR {
+    .STACKSIZE 0
+    including[PRINT] <stdio.json>
+}
+
+DATA {
+    S1 = ASCII.Hello + 20 + ASCII.from + 20 + ASCII.function + 20 + ASCII.1! + 0a
+    S2 = ASCII.Hello + 20 + ASCII.from + 20 + ASCII.function + 20 + ASCII.2! + 0a
+    S3 = ASCII.Hello + 20 + ASCII.from + 20 + ASCII.function + 20 + ASCII.3! + 0a
+    S4 = ASCII.Hello + 20 + ASCII.from + 20 + ASCII.function + 20 + ASCII.4! + 0a
+    S5 = ASCII.Hello + 20 + ASCII.from + 20 + ASCII.function + 20 + ASCII.5! + 0a
+}
+
+CODE {
+    INVOKE function0
+    eof
+function0:
+        SETARG BYTE(0) S1
+    PRINT
+    INVOKE function1
+    INVOKE function2
+    RETURN
+
+function1:
+        SETARG BYTE(0) S2
+    PRINT
+    INVOKE function3
+    RETURN
+function2:
+        SETARG BYTE(0) S3 
+    PRINT
+    INVOKE function4
+    RETURN
+function3:
+        SETARG BYTE(0) S4
+    PRINT
+    RETURN
+function4:
+        SETARG BYTE(0) S5
+    PRINT
+    RETURN
+}

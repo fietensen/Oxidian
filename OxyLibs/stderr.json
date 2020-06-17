@@ -1,0 +1,28 @@
+{
+    "PREPROCESSOR": {
+        "ERR_UNKNOWN": ["INT(0)"],
+        "ERR_NOINST": ["INT(1)"],
+        "ERR_NOLIB": ["INT(2)"],
+        "ERR_NOCALL": ["INT(3)"],
+        "ERR_STACKSPACE": ["INT(4)"],
+        "ERR_INVALIDFMODE": ["INT(5)"],
+        "ERR_NOFILE": ["INT(6)"],
+        "ERR_FOPENERR": ["INT(7)"],
+        "ERR_SEEK": ["INT(8)"],
+        "ERR_FCLOSE": ["INT(9)"],
+        "ERR_NOSOCK": ["INT(10)"],
+        "ERR_SOCKET": ["INT(11)"],
+        "ERR_INVALIDSOCK": ["INT(12)"],
+        "ERR_CONNECT": ["INT(13)"],
+        "ERR_SOCKSEND": ["INT(14)"],
+        "ERR_SOCKCLOSE": ["INT(15)"],
+        "ERR_RECV": ["INT(16)"],
+        "ERR_GETHOSTBYNAME": ["INT(17)"],
+        "ERR_SETSOCKOPT": ["INT(18)"],
+        "ERR_LISTEN": ["INT(19)"],
+        "ERR_BIND": ["INT(20)"],
+        "ERR_SOCKACCEPT": ["INT(21)"],
+        "ERR_SUCCESS": ["INT(1337)"]
+    },
+    "DATA": {}
+}

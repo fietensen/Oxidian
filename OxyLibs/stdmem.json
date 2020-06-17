@@ -1,0 +1,21 @@
+{
+    "PREPROCESSOR": {
+        "SETSTACK": [
+            "LOADLIB MEMORY",
+            "CALL SHORT(0)"
+        ],
+        "CPYSTACK": [
+            "LOADLIB MEMORY",
+            "CALL SHORT(1)"
+        ],
+        "SWPSTACK": [
+            "LOADLIB MEMORY",
+            "CALL SHORT(2)"
+        ],
+        "REVERSESTACK": [
+            "LOADLIB MEMORY",
+            "CALL SHORT(3)"
+        ]
+    },
+    "DATA": {}
+}
