@@ -257,7 +257,7 @@ def parse_string(string, code=False, resv=False):
             print("Error while handling BYTE macro. Number too big. (>256)")
             exit(1)
     elif string in list(environment.variables.keys()) and not code:
-        return environment.variables[string]
+        return environment.variables[string][2]
     elif tryconvert(string, unhexlify):
         return string
     elif not code:
